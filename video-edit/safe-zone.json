@@ -1,0 +1,12 @@
+{
+  "canvas": { "width": 1080, "height": 1920 },
+  "note": "Union of TikTok, Instagram Reels and YouTube Shorts UI. Every caption, motion graphic and b-roll card must sit inside `content`. Footage may run full-bleed.",
+  "content": { "x1": 64, "y1": 220, "x2": 900, "y2": 1330 },
+  "captionBand": { "x1": 64, "y1": 1040, "x2": 900, "y2": 1310, "anchor": "bottom" },
+  "coverGridCrop34": { "x1": 0, "y1": 240, "x2": 1080, "y2": 1680 },
+  "reserved": {
+    "top": "y < 220: status bar, Following/For You tabs, Reels camera icon",
+    "right": "x > 900: like / comment / share / audio rail",
+    "bottom": "y > 1330: username, caption text, audio ticker, Shorts subscribe bar"
+  }
+}

@@ -1,0 +1,14 @@
+1 HOOK|TH · A 122.2s
+2 OPEN|TH · A 3.6s
+3 B-ROLL|MG dark · stock · A 6.1s
+4 B-ROLL|MG light · pure MG · A 9.7s
+5 B-ROLL|MG dark · pure MG · A 16.3s
+6 B-ROLL|MG light · pure MG · A 24.0s
+7 B-ROLL|MG light · pure MG · A 35.0s
+8 B-ROLL|MG dark · MG + stock · A 44.2s
+9 THESIS|TH · A 56.8s
+10 TALK|TH · A 60.0s
+11 B-ROLL|MG light · stock · A 83.6s
+12 TALK|TH · A 91.4s
+13 B-ROLL|MG dark · stock · A 100.2s
+14 CTA|TH · A 122.2s
