@@ -11,7 +11,7 @@ import os
 import subprocess
 import sys
 
-from edl import DURATION, SEGMENTS
+from edl import DURATION, SEGMENTS, SPEECH_END, SPEED
 
 a_vid, b_src, a_voice, b_voice, loop, whoosh, typing = sys.argv[1:8]
 OUT = "assets/media"
@@ -38,8 +38,9 @@ for i, (take, a, b) in enumerate(SEGMENTS):
     aparts.append(f"[{asrc}:a]atrim=start={a:.3f}:end={b:.3f},asetpts=PTS-STARTPTS,"
                   f"afade=t=in:d=0.012,afade=t=out:st={max(d - 0.012, 0):.3f}:d=0.012[a{i}]")
 n = len(SEGMENTS)
-graph = ";".join(vparts + aparts) + ";" + "".join(f"[v{i}]" for i in range(n)) + f"concat=n={n}:v=1:a=0[v];" \
-        + "".join(f"[a{i}]" for i in range(n)) + f"concat=n={n}:v=0:a=1[a]"
+# The joined edit is played SPEED x faster: setpts for picture, atempo (pitch kept) for the voice.
+graph = ";".join(vparts + aparts) + ";" + "".join(f"[v{i}]" for i in range(n)) + f"concat=n={n}:v=1:a=0,setpts=PTS/{SPEED},fps=30[v];" \
+        + "".join(f"[a{i}]" for i in range(n)) + f"concat=n={n}:v=0:a=1,atempo={SPEED}[a]"
 run(["-i", a_vid, "-i", f"{OUT}/b_seg.mp4", "-i", a_voice, "-i", b_voice, "-filter_complex", graph,
      "-map", "[v]", "-c:v", "libx264", "-crf", "16", "-preset", "medium", "-pix_fmt", "yuv420p", "-movflags", "+faststart",
      f"{OUT}/base.mp4",
@@ -51,7 +52,9 @@ chain, last = [], "[0]"
 for i in range(1, copies):
     chain.append(f"{last}[{i}]acrossfade=d=1.5:c1=tri:c2=tri[m{i}]")
     last = f"[m{i}]"
-chain.append(f"{last}atrim=0:{DURATION + 0.5:.2f},afade=t=in:d=0.5,afade=t=out:st={DURATION - 2.5:.2f}:d=2.5[m]")
+# Lifted 2.2x over 0.6 s when the talk ends, so the end card plays on the music, then faded out.
+lift = f"volume='1+1.2*min(max((t-{SPEECH_END - 0.3:.2f})/0.6,0),1)':eval=frame"
+chain.append(f"{last}atrim=0:{DURATION + 0.5:.2f},{lift},afade=t=in:d=0.5,afade=t=out:st={DURATION - 1.6:.2f}:d=1.6[m]")
 run([x for _ in range(copies) for x in ("-i", loop)] + ["-filter_complex", ";".join(chain), "-map", "[m]",
     "-c:a", "aac", "-b:a", "192k", f"{OUT}/music.m4a"])
 
