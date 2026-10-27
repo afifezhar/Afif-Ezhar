@@ -2,6 +2,27 @@
 
 Base: **Take A** (`VID_20261027_081227.mp4`), 1080×1920. Timings below are Take A source times.
 
+## Final edit (in progress)
+
+- **Length: 90.8 s.** The ~2:05 cut was paced down. Lines dropped:
+  - "Video affiliate ke, produk review ke, iklan branding pun ada"
+  - "Mula-mula memang nampak impressive"
+  - "And here's something interesting"
+  - "Nampak tak apa yang sedang berlaku?"
+  - "AI ni memang powerful"
+  - "So, kalau korang buat content … tiga tips untuk korang"
+  - "Demonstrate macam mana dia berfungsi"
+  - "Sebab at the end of the day"
+  - "So aku curious" and the closing question, which is now the hook. The video ends on "…they can actually trust" and loops back into it.
+- **Cuts:** taken on ElevenLabs Scribe word times (`transcripts/*.scribe.json`). Every cut is snapped into a measured silence (`transcripts/*.silences.json`), and all 50 cut points were checked quiet. Pauses over 0.30 s are shortened to 0.18 s.
+- **Sync:** footage is converted to a constant 30 fps first, and cuts are frame-aligned. Picture and voice are both exactly 90.767 s.
+- **Project:** `edit/`.
+  - `edl.py` holds the edit list.
+  - `prep.py` cuts the media and mixes the music and SFX.
+  - `build.py` writes the composition: Kold captions in 31 phrases, 8 b-roll inserts, star wipes, and a 100%/107% punch-in on every jump cut.
+- **Cover:** D1, text "korang / *percaya ke* / **AI-generated** / product review?" (`covers/out/cover-d1.jpg`).
+- **Music:** loop 1.
+
 ## Style D — chosen direction (from your references)
 
 - Captions ref: https://www.pinterest.com/pin/170362798400644982/ ("Kold-style subtitles")

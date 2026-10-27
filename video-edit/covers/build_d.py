@@ -11,10 +11,10 @@ STAR = ('<svg class="star" viewBox="0 0 100 100" style="{pos}"><path '
 
 LOCAL = """
 .c-fade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.85) 100%); }
-.cover-kold { bottom: 640px; }
+.cover-kold { bottom: 620px; }
 .cover-kold .ks { font-size: 78px; }
-.cover-kold .kserif { font-size: 240px; line-height: 0.8; }
-.cover-kold .kit { font-size: 132px; color: var(--accent); }
+.cover-kold .kserif { font-size: 186px; line-height: 0.82; }
+.cover-kold .kit { font-size: 118px; color: var(--accent); }
 .panel { position: absolute; left: 0; right: 0; top: 1000px; bottom: 0; background: linear-gradient(180deg, rgba(11,11,11,0) 0, #0b0b0b 90px); }
 .half { position: absolute; left: 0; top: 0; width: 1080px; height: 1100px; }
 .photo { position: absolute; z-index: 2; padding: 18px 18px 70px; background: #fff; box-shadow: 24px 34px 60px rgba(0,0,0,0.25); }
@@ -25,8 +25,8 @@ LOCAL = """
 COVERS = {
     "d1": ("Talking head + Kold caption",
            f'<img class="plate" src="{FRAME}" alt="" /><div class="c-fade"></div>'
-           '<div class="ov kold cover-kold"><div class="ks">korang masih</div><div class="kserif i">percaya</div>'
-           '<div class="kit">AI review?</div></div>'),
+           '<div class="ov kold cover-kold"><div class="ks">korang</div><div class="kserif i">percaya ke</div>'
+           '<div class="kit">AI-generated</div><div class="ks">product review?</div></div>'),
     "d2": ("Face on top, black b-roll panel",
            '<img class="plate half" src="../assets/frames/A_8_2_top.jpg" alt="" /><div class="panel"></div>'
            + STAR.format(pos="right:-170px;top:1000px;width:420px;height:420px")
