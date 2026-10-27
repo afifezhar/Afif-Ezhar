@@ -2,7 +2,13 @@
 
 Base: **Take A** (`VID_20261027_081227.mp4`), 1080×1920. Timings below are Take A source times.
 
-## Final edit (in progress)
+## Final edit
+
+- **v4:** "So, kalau korang buat content untuk business atau affiliate, aku nak share tiga benda ataupun tiga tips untuk korang" is back in.
+  - "Menurut kajian TikTok **tahun ni**" now uses Take A's own recording with "sendiri pada" dropped, instead of the Take B "2026" splice.
+  - Voice cloning was not needed, and is not available on the free ElevenLabs plan.
+  - Length 1:36.
+
 
 - **Length: 90.8 s.** The ~2:05 cut was paced down. Lines dropped:
   - "Video affiliate ke, produk review ke, iklan branding pun ada"
@@ -10,7 +16,6 @@ Base: **Take A** (`VID_20261027_081227.mp4`), 1080×1920. Timings below are Take
   - "And here's something interesting"
   - "Nampak tak apa yang sedang berlaku?"
   - "AI ni memang powerful"
-  - "So, kalau korang buat content … tiga tips untuk korang"
   - "Demonstrate macam mana dia berfungsi"
   - "Sebab at the end of the day"
   - "So aku curious" and the closing question, which is now the hook. The video ends on "…they can actually trust" and loops back into it.

@@ -26,19 +26,19 @@ WORDS = {k: words(k) for k in TAKE_FILES}
 # Kept spans (take, first word start, last word end), in output order.
 # Hook H4 is the closing question used as a cold open; it is asked again, in full, before the end card.
 # Dropped for pace: "Video affiliate ke ... pun ada", "Mula-mula memang nampak impressive", "And here's something
-# interesting", "Nampak tak apa yang sedang berlaku?", "AI ni memang powerful", "So, kalau korang buat content ...
-# tiga tips untuk korang", "Demonstrate macam mana dia berfungsi", "Sebab at the end of the day".
+# interesting", "Nampak tak apa yang sedang berlaku?", "AI ni memang powerful", "Demonstrate macam mana dia berfungsi", "Sebab at the end of the day".
 # The closing "So aku curious. Korang sendiri masih percaya ke ...?" is kept whole at the end as well.
-# E3: Take B names the year ("pada tahun 2026") in place of Take A's "pada tahun ni".
+# Afif asked for "kajian TikTok tahun ni" (not "2026"): Take A's own line is used with "sendiri pada" dropped,
+# so the voice is his real recording (voice cloning needs a paid ElevenLabs plan).
 SPANS = [
     ("A", 123.00, 128.20),   # Korang sendiri masih percaya ke dengan AI generated product review ni?
     ("A", 2.26, 11.64),      # AI sekarang dah boleh buat video ... Cuba korang scroll TikTok sekarang.
     ("A", 16.86, 22.40),     # Ada yang guna AI model, AI voice ... guna produk tu.
     ("A", 25.02, 29.92),     # Tapi bila ramai sangat ... lebih kurang sama je.
-    ("B", 32.32, 35.46),     # Menurut kajian TikTok tu sendiri pada tahun 2026,
-    ("A", 35.76, 52.34),     # tiga daripada empat ... untuk membeli something.
+    ("A", 32.76, 52.34),     # Menurut kajian TikTok tahun ni, tiga daripada empat ... untuk membeli something.
     ("A", 55.44, 63.56),     # Technology is getting better ... jangan guna AI.
     ("A", 66.40, 74.96),     # Cuma kalau semua orang ... bukan lagi kelebihan utama dah.
+    ("A", 75.90, 83.74),     # So, kalau korang buat content untuk business atau affiliate, aku nak share tiga benda.
     ("A", 84.32, 89.34),     # First, show, don't just generate. Kalau review produk, tunjuk produk sebenar tu sendiri.
     ("A", 92.68, 112.36),    # Second, share real experiences ... datang daripada diri kita sendiri.
     ("A", 114.48, 120.44),   # orang bukan sekadar nak tengok content yang cantik je. Dia nak something they can actually trust.
@@ -48,7 +48,8 @@ SPANS = [
 # Repeated or filler words dropped inside spans (take, first word start, last word end).
 DROPS = [
     ("A", 20.74, 21.34),     # "product tu," in "kononnya tengah product tu, guna product tu"
-    ("B", 33.56, 34.04),     # "tu sendiri" in "kajian TikTok tu sendiri"
+    ("A", 34.10, 34.66),     # "sendiri pada" in "kajian TikTok sendiri pada tahun ni"
+    ("A", 81.90, 83.74),     # "ataupun tiga tips untuk korang" after "aku nak share tiga benda"
     ("A", 39.44, 39.82),     # "sendiri" in "Asia Pasifik sendiri"
     ("A", 48.36, 48.92),     # "tu sendiri" in "authentic content tu sendiri"
     ("A", 88.76, 89.34),     # "tu sendiri" in "tunjuk produk sebenar tu sendiri"
