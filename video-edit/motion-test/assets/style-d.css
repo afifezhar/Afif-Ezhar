@@ -65,7 +65,7 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0b0b0
 .mg.light { --mg-bg: #ffffff; --mg-ink: #111111; --star: #0b0b0b; --accent-soft: #8a8a8a; }
 .mg.light .mgbig, .mg.light .mgmid:not(.soft) { color: #111; }
 .mgmid.soft { color: var(--accent-soft); }
-.mg.light .mgbig .hl, .mg.light .mgmid .hl { background: linear-gradient(transparent 52%, var(--accent) 52%, var(--accent) 92%, transparent 92%); }
+.mg.light .mgbig .mk, .mg.light .mgmid .mk { background: linear-gradient(transparent 52%, var(--accent) 52%, var(--accent) 92%, transparent 92%); }
 .star path { fill: var(--star); }
 /* Dark canvas: soft spotlight so black objects (mic, claw) still separate from the background. */
 .mg:not(.light)::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 45% at 55% 58%, #3a3a3a 0%, #1a1a1a 45%, var(--mg-bg) 100%); }

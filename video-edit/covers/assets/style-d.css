@@ -1,0 +1,105 @@
+/* Style D: Kold-style captions on the talking head + white editorial motion-graphic b-roll.
+   Refs: pinterest.com/pin/170362798400644982 (captions), pinterest.com/pin/1119285313673132667 (b-roll). */
+@font-face { font-family: "Inter"; src: url("fonts/Inter.woff2") format("woff2"); font-weight: 100 900; }
+@font-face { font-family: "Playfair"; src: url("fonts/PlayfairDisplay.woff2") format("woff2"); font-weight: 400 900; }
+@font-face { font-family: "Playfair"; src: url("fonts/PlayfairDisplay-Italic.woff2") format("woff2"); font-weight: 400 900; font-style: italic; }
+@font-face { font-family: "Poppins"; src: url("fonts/Poppins-Italic.woff2") format("woff2"); font-weight: 400; font-style: italic; }
+@font-face { font-family: "Poppins"; src: url("fonts/Poppins-MediumItalic.woff2") format("woff2"); font-weight: 500; font-style: italic; }
+@font-face { font-family: "Poppins"; src: url("fonts/Poppins-ExtraBoldItalic.woff2") format("woff2"); font-weight: 800; font-style: italic; }
+
+:root {
+  --accent: #ffd60a;
+  --accent-soft: #fff0a3;
+  --mg-bg: #0b0b0b;
+  --mg-ink: #ffffff;
+  --star: #ffd60a;
+  --ink: #111111;
+  --paper: #ffffff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0b0b0c; }
+#root { position: relative; width: 1080px; height: 1920px; font-family: "Inter", sans-serif; }
+
+.scene { position: absolute; inset: 0; overflow: hidden; }
+.plate { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 22%; }
+.zoom-110 { transform: scale(1.1); }
+/* Soft bottom fade so white captions hold on the black shirt. */
+.fade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.55) 100%); }
+
+/* ---------- Kold captions: stacked, mixed faces, white with glow, at chest level ---------- */
+.kold { position: absolute; left: 64px; width: 836px; bottom: 690px; text-align: center; color: #fff;
+        text-shadow: 0 0 24px rgba(255,255,255,0.45), 0 3px 16px rgba(0,0,0,0.45); }
+.kold > div { display: block; }
+.kold .w { display: inline-block; }
+.ks  { font-weight: 800; font-size: 58px; letter-spacing: -0.045em; line-height: 0.98; }
+.kbig { font-weight: 900; font-size: 104px; letter-spacing: -0.055em; line-height: 0.9; }
+.kserif { font-family: "Playfair", serif; font-weight: 400; font-size: 132px; letter-spacing: -0.035em; line-height: 0.82; }
+.kserif.i { font-style: italic; }
+.kit { font-family: "Poppins", sans-serif; font-style: italic; font-weight: 800; font-size: 96px; letter-spacing: -0.05em; line-height: 0.95; }
+
+/* ---------- Motion-graphic b-roll: editorial layout, yellow heavy italic, B&W cut-outs ---------- */
+.mg { position: absolute; inset: 0; background: var(--mg-bg); overflow: hidden; }
+.mg.dark { background: #050505; }
+.eyebrow { position: absolute; left: 64px; width: 836px; font-family: "Poppins", sans-serif; font-style: italic; font-weight: 400; font-size: 36px; letter-spacing: -0.01em; color: var(--mg-ink); }
+.mgbig { position: absolute; left: 64px; width: 836px; font-family: "Poppins", sans-serif; font-style: italic; font-weight: 800; font-size: 176px; line-height: 0.84; letter-spacing: -0.06em; color: var(--accent); }
+.mgmid { position: absolute; left: 64px; width: 836px; font-family: "Poppins", sans-serif; font-style: italic; font-weight: 800; font-size: 96px; line-height: 0.9; letter-spacing: -0.05em; color: var(--accent); }
+.mgsmall { position: absolute; left: 64px; width: 836px; font-family: "Poppins", sans-serif; font-style: italic; font-weight: 500; font-size: 40px; line-height: 1.15; color: var(--mg-ink); }
+.mg.dark .eyebrow, .mg.dark .mgsmall { color: #fff; }
+.mg.dark .mgbig, .mg.dark .mgmid { color: var(--accent); text-shadow: 0 0 40px rgba(255,214,10,0.35); }
+.center { text-align: center; }
+.cutout { position: absolute; width: 1080px; left: 0; filter: drop-shadow(28px 34px 36px rgba(0,0,0,0.38)); }
+.phone { position: absolute; width: 440px; height: 900px; border-radius: 64px; background: #111; padding: 16px;
+         box-shadow: 34px 44px 70px rgba(0,0,0,0.35); }
+.phone img { width: 100%; height: 100%; object-fit: cover; border-radius: 50px; display: block; }
+.phone::before { content: ""; position: absolute; top: 34px; left: 50%; width: 120px; height: 30px; margin-left: -60px; border-radius: 20px; background: #111; z-index: 2; }
+.barcode { position: absolute; width: 300px; height: 64px; background: repeating-linear-gradient(90deg, var(--mg-ink) 0 3px, transparent 3px 6px, var(--mg-ink) 6px 7px, transparent 7px 11px, var(--mg-ink) 11px 15px, transparent 15px 17px); opacity: 0.85; }
+.star { position: absolute; width: 520px; height: 520px; }
+.glow { position: absolute; border-radius: 120px; filter: blur(60px); background: rgba(255,200,0,0.30); }
+.stock { position: absolute; z-index: 2; filter: drop-shadow(26px 32px 34px rgba(0,0,0,0.32)); }
+.mgbig, .mgmid, .eyebrow, .mgsmall { z-index: 1; }
+.swipe { position: absolute; z-index: 3; width: 120px; height: 120px; border-radius: 50%; background: var(--accent); color: #111;
+         font: 800 72px/120px "Inter", sans-serif; text-align: center; box-shadow: 0 16px 40px rgba(255,214,10,0.35); }
+
+/* Light-canvas variant (reference look). Yellow needs the black canvas to read, so on white the headline
+   becomes black with a yellow marker band behind it. */
+.mg.light { --mg-bg: #ffffff; --mg-ink: #111111; --star: #0b0b0b; --accent-soft: #8a8a8a; }
+.mg.light .mgbig, .mg.light .mgmid:not(.soft) { color: #111; }
+.mgmid.soft { color: var(--accent-soft); }
+.mg.light .mgbig .mk, .mg.light .mgmid .mk { background: linear-gradient(transparent 52%, var(--accent) 52%, var(--accent) 92%, transparent 92%); }
+.star path { fill: var(--star); }
+/* Dark canvas: soft spotlight so black objects (mic, claw) still separate from the background. */
+.mg:not(.light)::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 45% at 55% 58%, #3a3a3a 0%, #1a1a1a 45%, var(--mg-bg) 100%); }
+.mg:not(.light) .stock { filter: drop-shadow(0 0 34px rgba(255,255,255,0.16)) drop-shadow(18px 26px 30px rgba(0,0,0,0.6)); }
+
+/* ---------- Pure motion-graphic elements ---------- */
+.feed { position: absolute; z-index: 2; width: 470px; height: 900px; border-radius: 64px; background: #111; padding: 18px; overflow: hidden;
+        box-shadow: 30px 40px 70px rgba(0,0,0,0.28); }
+.feed .card { position: relative; height: 420px; border-radius: 40px; margin-bottom: 18px; overflow: hidden; background: #2a2a2a; }
+.feed .card img { width: 100%; height: 100%; object-fit: contain; background: #e9e9e9; filter: grayscale(1); }
+.feed .tag { position: absolute; left: 22px; bottom: 22px; font: 700 30px/1 "Inter", sans-serif; color: #111; background: var(--accent); padding: 10px 18px; border-radius: 999px; }
+.feed .ui { position: absolute; right: 18px; bottom: 90px; width: 54px; display: grid; gap: 22px; }
+.feed .ui i { display: block; width: 54px; height: 54px; border-radius: 50%; background: rgba(255,255,255,0.85); }
+.aibadge { position: absolute; z-index: 3; font: 800 30px/1 "Inter", sans-serif; letter-spacing: 0.04em; color: #111; background: var(--accent); padding: 12px 18px; border-radius: 10px; }
+.wave { position: absolute; z-index: 3; display: flex; align-items: center; gap: 10px; height: 120px; }
+.wave b { display: block; width: 14px; border-radius: 7px; background: var(--accent); }
+.grid9 { position: absolute; z-index: 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.grid9 img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 18px; filter: grayscale(1) contrast(1.05); }
+.people { position: absolute; z-index: 2; display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
+.people svg { width: 100%; height: auto; }
+.people .on path, .people .on circle { fill: var(--accent); }
+.people .off path, .people .off circle { fill: #d9d9d9; }
+.mg:not(.light) .people .off path, .mg:not(.light) .people .off circle { fill: #3a3a3a; }
+.dots { position: absolute; z-index: 2; display: grid; grid-template-columns: repeat(5, 1fr); gap: 22px; }
+.dots i { display: block; aspect-ratio: 1; border-radius: 50%; background: var(--accent); box-shadow: 0 0 24px rgba(255,214,10,0.35); }
+.dots i.off { background: #3a3a3a; box-shadow: none; }
+/* Generic "AI creator" card: same faceless avatar every time, to show sameness without using real people. */
+.aicard { position: relative; aspect-ratio: 3 / 4; border-radius: 22px; overflow: hidden;
+          background: linear-gradient(160deg, #f4f4f4 0%, #c9c9c9 100%); box-shadow: 10px 14px 24px rgba(0,0,0,0.18); }
+.aicard svg { position: absolute; left: 20%; top: 14%; width: 60%; }
+.aicard svg circle, .aicard svg path { fill: #ffffff; }
+.aicard i { position: absolute; left: 12%; bottom: 16%; width: 62%; height: 7%; border-radius: 99px; background: rgba(17,17,17,0.55); }
+.aicard i.s { bottom: 7%; width: 40%; background: rgba(17,17,17,0.3); }
+.aicard b { position: absolute; right: 8%; top: 6%; font: 800 22px/1 "Inter", sans-serif; color: #111; background: var(--accent); padding: 6px 9px; border-radius: 6px; }
+.aiphone { position: absolute; z-index: 2; width: 520px; padding: 18px; border-radius: 60px; background: #111; box-shadow: 0 0 0 2px #2a2a2a, 0 30px 70px rgba(0,0,0,0.6); }
+.aiphone .aicard { border-radius: 44px; box-shadow: none; }
+.aiphone .aicard b { display: none; }

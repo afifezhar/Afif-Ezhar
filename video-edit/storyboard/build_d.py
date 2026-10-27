@@ -27,7 +27,7 @@ def mg(theme, inner):
     """theme: 'dark' = yellow on black, 'light' = black on white with yellow marker on headline words."""
     if theme == "light":
         inner = re.sub(r'(<div class="ov (?:mgbig|mgmid)[^"]*"[^>]*>)(.*?)(</div>)',
-                       lambda m: m.group(1) + re.sub(r'([^<>]+)(?=<br>|$)', r'<span class="hl">\1</span>', m.group(2)) + m.group(3),
+                       lambda m: m.group(1) + re.sub(r'([^<>]+)(?=<br>|$)', r'<span class="mk">\1</span>', m.group(2)) + m.group(3),
                        inner)
         return f'<div class="mg light">{inner}</div>'
     return f'<div class="mg">{inner}</div>'
@@ -47,7 +47,7 @@ WAVE = "".join(f'<b style="height:{h}px"></b>' for h in (30, 70, 110, 60, 96, 12
 
 # (beat, Take A time, kind, html)
 FRAMES = [
-    ("1 HOOK", "71.2", "TH", th("f_72_3.jpg", '<div class="ks">Video yang</div><div class="kserif">perfect</div>', "zoom-110")),
+    ("1 HOOK", "122.2", "TH", th("f_125_0.jpg", '<div class="ks">dengan</div><div class="kit">AI generated</div><div class="ks">product review ni?</div>', "zoom-110")),
     ("2 OPEN", "3.6", "TH", th("f_3_0.jpg", '<div class="ks">buat video yang</div><div class="kit">nampak real,</div>')),
     ("3 B-ROLL", "6.1", "MG dark · stock", mg("dark",
         STAR.format(pos="right:-150px;top:-170px")
