@@ -1,7 +1,53 @@
 # Storyboard options — "Orang masih percaya ke?"
 
 Base: **Take A** (`VID_20261027_081227.mp4`), 1080×1920. Timings below are Take A source times.
-Pick **one storyboard (A / B / C)**, **one hook (H1 / H2 / H3)** and **one cover (1–4)**, and I'll build the full HyperFrames edit.
+
+## Style D — chosen direction (from your references)
+
+- Captions ref: https://www.pinterest.com/pin/170362798400644982/ ("Kold-style subtitles")
+- B-roll ref: https://www.pinterest.com/pin/1119285313673132667/ (motion graphics as b-roll only)
+
+Board: `storyboard/out/style-d.jpg` (12 frames). Motion test, rendered in HyperFrames with the processed voice: `samples/style-d-motion-test.mp4` (11.5 s: hook H2 → opening line → star wipe → b-roll).
+
+**Talking head + Kold captions**
+- One stacked phrase at a time at chest level, centred, bottom-anchored at y 1230. The face stays clear and it sits inside the safe zone.
+- Three faces mixed per phrase: a small Inter ExtraBold line, a large **Playfair Display** serif (roman or italic) for the emotional word, and **Poppins ExtraBold Italic** for emphasis.
+- White text with a soft white glow and a light drop shadow. No box and no stroke.
+- Each word appears on its spoken word (Whisper word times): fade, rise of 22 px and scale from 0.94, over 0.16 s. The phrase clears when the next one starts.
+
+**Motion-graphic b-roll (full screen, cuts away from the talking head; the voice continues)**
+- White canvas with one accent colour, maroon `#9e2a3a`, plus blush `#e9b9c1` for secondary words. One dark variant uses black with a red glow.
+- An italic eyebrow line, typed letter by letter in sync with the voice. Below it, a huge **Poppins ExtraBold Italic** headline with tight leading. Each word slides in on its spoken word.
+- **CC0 stock** cut-outs in high-contrast black & white with soft drop shadows. Headline words sit behind or in front of the object for depth. Sources and licences: `storyboard/assets/stock/SOURCES.md`.
+  - Statue: "nampak perfect"
+  - Mannequin + mic: "AI model, AI voice"
+  - Hands with phone: "3 dari 4 skip"
+  - Paper bags: "membeli"
+  - Hand recording: "show"
+  - Robotic claw: "AI as a tool"
+- Transitions: a black four-point star grows from a corner to cover the frame, then settles back as a corner ornament (with an ElevenLabs whoosh). Barcode and swipe-arrow accents.
+- B-roll text follows the same safe zone. Images may bleed past it.
+
+| # | Beat | Take A | Type | On screen |
+| --- | --- | --- | --- | --- |
+| 1 | Hook (H2) | 71.2 | Talking head | "Video yang / *perfect*" → "bukan lagi / **kelebihan utama** / dah." |
+| 2 | Open | 1.7–6.1 | Talking head | "AI sekarang / **dah boleh**" → "buat video yang / *nampak real,*" → "nampak / perfect." |
+| 3 | B-roll | 6.1–9.3 | MG · statue | *Tapi persoalannya,* / **orang masih percaya ke?** |
+| 4 | B-roll | 16.3–22.2 | MG · mannequin + mic | *Ada yang guna* / **AI model, AI voice.** |
+| 5 | Talk | 24.0–29.7 | Talking head | "lama-lama semuanya nampak / *sama je.*" |
+| 6 | B-roll | 35.0–44.2 | MG · phone | *Menurut kajian TikTok 2026,* / **3 dari 4** … **skip.** |
+| 7 | B-roll | 44.2–52.1 | MG dark · bags | *dan 9 daripada 10 kata* / **authentic** / content pengaruh keputusan membeli |
+| 8 | Thesis | 54.9–60.0 | Talking head | "but / *authenticity* / is becoming more valuable." |
+| 9 | B-roll | 83.6–86.2 | MG · hand recording | *First,* / **show,** / don't just generate. |
+| 10 | Talk | 91.4–97.9 | Talking head | "second, / **share real** / *experiences.*" |
+| 11 | B-roll | 100.2–104.9 | MG · claw | *Third, use AI as a* / **tool,** / not your identity. |
+| 12 | CTA | 120.1–128.3 | Talking head | "korang masih / *percaya ke?*" |
+
+The b-roll covers about 34 s, roughly 27% of the runtime. Every other moment stays on the talking head with Kold captions.
+
+---
+
+## Earlier options (A / B / C)
 
 **Visual boards** (HyperFrames style frames from the retouched, graded footage, one frame per beat):
 

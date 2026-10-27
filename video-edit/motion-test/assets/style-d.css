@@ -1,0 +1,58 @@
+/* Style D: Kold-style captions on the talking head + white editorial motion-graphic b-roll.
+   Refs: pinterest.com/pin/170362798400644982 (captions), pinterest.com/pin/1119285313673132667 (b-roll). */
+@font-face { font-family: "Inter"; src: url("fonts/Inter.woff2") format("woff2"); font-weight: 100 900; }
+@font-face { font-family: "Playfair"; src: url("fonts/PlayfairDisplay.woff2") format("woff2"); font-weight: 400 900; }
+@font-face { font-family: "Playfair"; src: url("fonts/PlayfairDisplay-Italic.woff2") format("woff2"); font-weight: 400 900; font-style: italic; }
+@font-face { font-family: "Poppins"; src: url("fonts/Poppins-Italic.woff2") format("woff2"); font-weight: 400; font-style: italic; }
+@font-face { font-family: "Poppins"; src: url("fonts/Poppins-MediumItalic.woff2") format("woff2"); font-weight: 500; font-style: italic; }
+@font-face { font-family: "Poppins"; src: url("fonts/Poppins-ExtraBoldItalic.woff2") format("woff2"); font-weight: 800; font-style: italic; }
+
+:root {
+  --maroon: #9e2a3a;
+  --blush: #e9b9c1;
+  --ink: #111111;
+  --paper: #ffffff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0b0b0c; }
+#root { position: relative; width: 1080px; height: 1920px; font-family: "Inter", sans-serif; }
+
+.scene { position: absolute; inset: 0; overflow: hidden; }
+.plate { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 22%; }
+.zoom-110 { transform: scale(1.1); }
+/* Soft bottom fade so white captions hold on the black shirt. */
+.fade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.55) 100%); }
+
+/* ---------- Kold captions: stacked, mixed faces, white with glow, at chest level ---------- */
+.kold { position: absolute; left: 64px; width: 836px; bottom: 690px; text-align: center; color: #fff;
+        text-shadow: 0 0 24px rgba(255,255,255,0.45), 0 3px 16px rgba(0,0,0,0.45); }
+.kold > div { display: block; }
+.kold .w { display: inline-block; }
+.ks  { font-weight: 800; font-size: 58px; letter-spacing: -0.045em; line-height: 0.98; }
+.kbig { font-weight: 900; font-size: 104px; letter-spacing: -0.055em; line-height: 0.9; }
+.kserif { font-family: "Playfair", serif; font-weight: 400; font-size: 132px; letter-spacing: -0.035em; line-height: 0.82; }
+.kserif.i { font-style: italic; }
+.kit { font-family: "Poppins", sans-serif; font-style: italic; font-weight: 800; font-size: 96px; letter-spacing: -0.05em; line-height: 0.95; }
+
+/* ---------- Motion-graphic b-roll: white editorial, maroon heavy italic, B&W cut-outs ---------- */
+.mg { position: absolute; inset: 0; background: var(--paper); overflow: hidden; }
+.mg.dark { background: #050505; }
+.eyebrow { position: absolute; left: 64px; width: 836px; font-family: "Poppins", sans-serif; font-style: italic; font-weight: 400; font-size: 36px; letter-spacing: -0.01em; color: var(--ink); }
+.mgbig { position: absolute; left: 64px; width: 836px; font-family: "Poppins", sans-serif; font-style: italic; font-weight: 800; font-size: 176px; line-height: 0.84; letter-spacing: -0.06em; color: var(--maroon); }
+.mgmid { position: absolute; left: 64px; width: 836px; font-family: "Poppins", sans-serif; font-style: italic; font-weight: 800; font-size: 96px; line-height: 0.9; letter-spacing: -0.05em; color: var(--maroon); }
+.mgsmall { position: absolute; left: 64px; width: 836px; font-family: "Poppins", sans-serif; font-style: italic; font-weight: 500; font-size: 40px; line-height: 1.15; color: var(--ink); }
+.mg.dark .eyebrow, .mg.dark .mgsmall { color: #fff; }
+.mg.dark .mgbig, .mg.dark .mgmid { color: #e0384d; text-shadow: 0 0 40px rgba(224,56,77,0.45); }
+.center { text-align: center; }
+.cutout { position: absolute; width: 1080px; left: 0; filter: drop-shadow(28px 34px 36px rgba(0,0,0,0.38)); }
+.phone { position: absolute; width: 440px; height: 900px; border-radius: 64px; background: #111; padding: 16px;
+         box-shadow: 34px 44px 70px rgba(0,0,0,0.35); }
+.phone img { width: 100%; height: 100%; object-fit: cover; border-radius: 50px; display: block; }
+.phone::before { content: ""; position: absolute; top: 34px; left: 50%; width: 120px; height: 30px; margin-left: -60px; border-radius: 20px; background: #111; z-index: 2; }
+.barcode { position: absolute; width: 300px; height: 64px; background: repeating-linear-gradient(90deg, #111 0 3px, transparent 3px 6px, #111 6px 7px, transparent 7px 11px, #111 11px 15px, transparent 15px 17px); }
+.star { position: absolute; width: 520px; height: 520px; }
+.glow { position: absolute; border-radius: 120px; filter: blur(60px); background: rgba(190,30,50,0.55); }
+.stock { position: absolute; z-index: 2; filter: drop-shadow(26px 32px 34px rgba(0,0,0,0.32)); }
+.mgbig, .mgmid, .eyebrow, .mgsmall { z-index: 1; }
+.swipe { position: absolute; z-index: 3; width: 120px; height: 120px; border-radius: 50%; background: var(--maroon); color: #fff;
+         font: 800 72px/120px "Inter", sans-serif; text-align: center; box-shadow: 0 16px 40px rgba(158,42,58,0.45); }

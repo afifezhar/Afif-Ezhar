@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ms" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1920">
+    <script src="assets/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/style-d.css">
+    <style>
+      .kold { opacity: 0; }
+      .kold .w { opacity: 0; }
+      #eyebrow .c { opacity: 0; }
+      #mgtest .wd { display: inline-block; opacity: 0; }
+      #tstar { position: absolute; right: -150px; top: -170px; width: 520px; height: 520px; z-index: 20; }
+    </style>
+  </head>
+  <body>
+    <!-- Style D motion test (11.5 s): hook H2 -> opening line -> star wipe -> motion-graphic b-roll.
+         Media from ./prep-media.sh; timings are Take A word times re-based to this clip. -->
+    <div data-hf-id="hf-vqff" id="root" data-composition-id="main" data-start="0" data-duration="11.5" data-width="1080" data-height="1920">
+      <video data-color-grading="{&quot;preset&quot;:&quot;skin-soft&quot;,&quot;intensity&quot;:1,&quot;adjust&quot;:{&quot;exposure&quot;:0.04,&quot;contrast&quot;:-0.03,&quot;highlights&quot;:-0.12,&quot;shadows&quot;:0.12,&quot;whites&quot;:0,&quot;blacks&quot;:0,&quot;temperature&quot;:0.08,&quot;tint&quot;:0.02,&quot;vibrance&quot;:0,&quot;saturation&quot;:0.04},&quot;details&quot;:{&quot;vignette&quot;:0,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0,&quot;grainSize&quot;:0.25,&quot;grainRoughness&quot;:0.5},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-n89u" id="v-hook" class="plate zoom-110 clip" src="assets/media/hook.mp4" muted data-start="0" data-duration="3.6" data-track-index="0"></video>
+      <video data-color-grading="{&quot;preset&quot;:&quot;skin-soft&quot;,&quot;intensity&quot;:1,&quot;adjust&quot;:{&quot;exposure&quot;:0.04,&quot;contrast&quot;:-0.03,&quot;highlights&quot;:-0.12,&quot;shadows&quot;:0.12,&quot;whites&quot;:0,&quot;blacks&quot;:0,&quot;temperature&quot;:0.08,&quot;tint&quot;:0.02,&quot;vibrance&quot;:0,&quot;saturation&quot;:0.04},&quot;details&quot;:{&quot;vignette&quot;:0,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0,&quot;grainSize&quot;:0.25,&quot;grainRoughness&quot;:0.5},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-q80y" id="v-open" class="plate clip" src="assets/media/open.mp4" muted data-start="3.6" data-duration="4.4" data-track-index="0"></video>
+      <div data-hf-id="hf-dxr6" id="fade" class="fade"></div>
+
+      <!-- Kold captions, one block per phrase -->
+      <div data-hf-id="hf-u0yg" id="p1" class="ov kold"><div data-hf-id="hf-vxmi" class="ks"><span data-hf-id="hf-6qaz" class="w">Video</span> <span data-hf-id="hf-otod" class="w">yang</span></div><div data-hf-id="hf-ebxa" class="kserif"><span data-hf-id="hf-t9nx" class="w">perfect</span></div></div>
+      <div data-hf-id="hf-2oub" id="p2" class="ov kold"><div data-hf-id="hf-glge" class="ks"><span data-hf-id="hf-j7sp" class="w">bukan</span> <span data-hf-id="hf-irwr" class="w">lagi</span></div><div data-hf-id="hf-phus" class="kit"><span data-hf-id="hf-055l" class="w">kelebihan</span> <span data-hf-id="hf-f9bu" class="w">utama</span></div><div data-hf-id="hf-gzrf" class="ks"><span data-hf-id="hf-ay0h" class="w">dah.</span></div></div>
+      <div data-hf-id="hf-yqqa" id="p3" class="ov kold"><div data-hf-id="hf-he2g" class="ks"><span data-hf-id="hf-hlbq" class="w">AI</span> <span data-hf-id="hf-r3zy" class="w">sekarang</span></div><div data-hf-id="hf-nfb3" class="kbig"><span data-hf-id="hf-xcsl" class="w">dah</span> <span data-hf-id="hf-jmog" class="w">boleh</span></div></div>
+      <div data-hf-id="hf-fz0l" id="p4" class="ov kold"><div data-hf-id="hf-elx9" class="ks"><span data-hf-id="hf-63cs" class="w">buat</span> <span data-hf-id="hf-zn7v" class="w">video</span> <span data-hf-id="hf-crbl" class="w">yang</span></div><div data-hf-id="hf-6kbg" class="kit"><span data-hf-id="hf-qroc" class="w">nampak</span> <span data-hf-id="hf-m2oo" class="w">real,</span></div></div>
+      <div data-hf-id="hf-f7cs" id="p5" class="ov kold"><div data-hf-id="hf-f08a" class="ks"><span data-hf-id="hf-bkpg" class="w">nampak</span></div><div data-hf-id="hf-6soy" class="kserif"><span data-hf-id="hf-uf21" class="w">perfect.</span></div></div>
+
+      <!-- Motion-graphic b-roll -->
+      <div data-hf-id="hf-w36t" id="mgtest" class="mg clip" data-start="8" data-duration="3.5" data-track-index="1">
+        <div data-hf-id="hf-h0kz" id="eyebrow" class="ov eyebrow" style="top:250px"></div>
+        <div data-hf-id="hf-3ug6" class="ov mgbig" style="top:310px"><span data-hf-id="hf-zil0" class="wd" id="m-orang">orang</span><br data-hf-id="hf-x5px"><span data-hf-id="hf-33p0" class="wd" id="m-masih">masih</span></div>
+        <img data-hf-id="hf-12gl" id="statue" class="stock" src="assets/stock/statue.png" alt="" style="left:330px;top:560px;height:1240px">
+        <div data-hf-id="hf-amks" class="ov mgbig" style="top:910px;z-index:3"><span data-hf-id="hf-0y28" class="wd" id="m-percaya">percaya</span><br data-hf-id="hf-rsrt"><span data-hf-id="hf-k6y9" class="wd" id="m-ke">ke?</span></div>
+        <div data-hf-id="hf-oblt" class="ov barcode" style="left:64px;top:1250px;width:220px;height:48px"></div>
+      </div>
+      <svg data-hf-id="hf-0h67" id="tstar" viewBox="0 0 100 100"><path data-hf-id="hf-2wof" fill="#0b0b0b" d="M50 0 C54 38 62 46 100 50 C62 54 54 62 50 100 C46 62 38 54 0 50 C38 46 46 38 50 0Z" /></svg>
+
+      <audio data-hf-id="hf-jcg2" id="a-voice" src="assets/media/voice.m4a" data-start="0" data-duration="11.5" data-track-index="2"></audio>
+      <audio data-hf-id="hf-fl4r" id="a-whoosh" src="assets/media/whoosh.mp3" data-start="7.7" data-duration="1" data-volume="0.55" data-track-index="3"></audio>
+      <audio data-hf-id="hf-xypd" id="a-type" src="assets/media/type.mp3" data-start="8.05" data-duration="1.5" data-volume="0.3" data-track-index="4"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const reveal = (el, t) => tl.fromTo(el, { opacity: 0, y: 22, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.16, ease: "power2.out", immediateRender: false }, t);
+
+      // [phrase, show, hide, word start times]
+      const phrases = [
+        ["#p1", 0.0, 1.30, [0.0, 0.82, 1.02]],
+        ["#p2", 1.34, 3.56, [1.34, 2.38, 2.58, 3.0, 3.42]],
+        ["#p3", 3.6, 5.40, [3.6, 4.24, 4.64, 5.12]],
+        ["#p4", 5.44, 7.22, [5.44, 5.84, 6.24, 6.42, 6.92]],
+        ["#p5", 7.26, 7.95, [7.26, 7.76]],
+      ];
+      for (const [sel, show, hide, times] of phrases) {
+        tl.set(sel, { opacity: 1 }, show);
+        document.querySelectorAll(sel + " .w").forEach((w, i) => reveal(w, times[i]));
+        tl.to(sel, { opacity: 0, duration: 0.1 }, hide);
+      }
+
+      // Star wipe: grows from the corner to cover the frame, then settles back as a corner ornament.
+      tl.fromTo("#tstar", { scale: 0, rotation: -120, transformOrigin: "50% 50%" }, { scale: 38, rotation: 0, duration: 0.24, ease: "power3.in" }, 7.76);
+      tl.to("#tstar", { scale: 1, rotation: 20, duration: 0.45, ease: "power3.out" }, 8.0);
+
+      // Eyebrow typed in time with "Tapi persoalannya," (8.00-9.70).
+      const eyebrow = document.getElementById("eyebrow");
+      const text = "Tapi persoalannya,";
+      for (const ch of text) { const s = document.createElement("span"); s.className = "c"; s.textContent = ch; eyebrow.appendChild(s); }
+      eyebrow.querySelectorAll(".c").forEach((c, i) => tl.set(c, { opacity: 1 }, 8.05 + i * (1.55 / text.length)));
+
+      // Statue rises in; headline words slide in on their spoken word.
+      tl.fromTo("#statue", { y: 260, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 8.15);
+      const slide = (sel, t) => tl.fromTo(sel, { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.22, ease: "power3.out", immediateRender: false }, t);
+      slide("#m-orang", 9.82); slide("#m-masih", 10.28); slide("#m-percaya", 10.6); slide("#m-ke", 10.98);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
