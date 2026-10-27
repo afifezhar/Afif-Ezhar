@@ -1,2 +1,5 @@
 # Local secrets written by `elevenlabs onboard`
 /.env.local
+
+# Rendered deliverables (too large for git)
+/video-edit/final/*.mp4
