@@ -24,10 +24,11 @@ def words(take):
 WORDS = {k: words(k) for k in TAKE_FILES}
 
 # Kept spans (take, first word start, last word end), in output order.
-# Hook H4 is the closing question used as a cold open; the video ends on "actually trust" and loops back into it.
+# Hook H4 is the closing question used as a cold open; it is asked again, in full, before the end card.
 # Dropped for pace: "Video affiliate ke ... pun ada", "Mula-mula memang nampak impressive", "And here's something
 # interesting", "Nampak tak apa yang sedang berlaku?", "AI ni memang powerful", "So, kalau korang buat content ...
-# tiga tips untuk korang", "Demonstrate macam mana dia berfungsi", "Sebab at the end of the day", "So aku curious".
+# tiga tips untuk korang", "Demonstrate macam mana dia berfungsi", "Sebab at the end of the day".
+# The closing "So aku curious. Korang sendiri masih percaya ke ...?" is kept whole at the end as well.
 # E3: Take B names the year ("pada tahun 2026") in place of Take A's "pada tahun ni".
 SPANS = [
     ("A", 123.00, 128.20),   # Korang sendiri masih percaya ke dengan AI generated product review ni?
@@ -41,7 +42,7 @@ SPANS = [
     ("A", 84.32, 89.34),     # First, show, don't just generate. Kalau review produk, tunjuk produk sebenar tu sendiri.
     ("A", 92.68, 112.36),    # Second, share real experiences ... datang daripada diri kita sendiri.
     ("A", 114.48, 120.44),   # orang bukan sekadar nak tengok content yang cantik je. Dia nak something they can actually trust.
-    ("A", 121.38, 122.52),   # So aku curious.  (outro lead-in; the end card follows)
+    ("A", 121.38, 128.20),   # So aku curious. Korang sendiri masih percaya ke ... ni?  (outro, then the end card)
 ]
 
 # Repeated or filler words dropped inside spans (take, first word start, last word end).
@@ -152,10 +153,12 @@ def _frame(t):
     return round(round(t * 30) / 30, 4)
 
 
-SEGMENTS = []
+SEGMENTS, SEG_SPAN = [], []          # SEG_SPAN[i] = index of the span segment i came from
 for i, (take, first, last) in enumerate(SPANS):
     pad = END_HOLD if i == len(SPANS) - 1 else TAIL
-    SEGMENTS += [(k, _frame(a), _frame(b)) for k, a, b in _segments(take, first, last, pad)]
+    segs = [(k, _frame(a), _frame(b)) for k, a, b in _segments(take, first, last, pad)]
+    SEGMENTS += segs
+    SEG_SPAN += [i] * len(segs)
 
 
 def timeline():
@@ -174,10 +177,11 @@ END_CARD = 3.2
 DURATION = round(SPEECH_END + END_CARD, 3)
 
 
-def to_out(take, t):
-    """Output time of source time t (after the speed-up), or None if that moment was cut."""
-    for k, a, b, o in TIMELINE:
-        if k == take and a - 0.12 <= t <= b + 0.12:
+def to_out(take, t, span=None):
+    """Output time of source time t (after the speed-up), or None if that moment was cut.
+    The closing question is used twice (hook and outro): pass span to pick which one; default is the first."""
+    for n, (k, a, b, o) in enumerate(TIMELINE):
+        if k == take and a - 0.12 <= t <= b + 0.12 and (span is None or SEG_SPAN[n] == span):
             return round((o + min(max(t - a, 0), b - a)) / SPEED, 3)
     return None
 
@@ -185,10 +189,10 @@ def to_out(take, t):
 def kept_words():
     """[(text, out_start, out_end)] for every word that survives the cut, in output order."""
     out = []
-    for take, first, last in SPANS:
+    for i, (take, first, last) in enumerate(SPANS):
         for text, s, e in WORDS[take]:
             if first - 0.01 <= s and e <= last + 0.01 and not _dropped(take, (text, s, e)):
-                os_, oe = to_out(take, s), to_out(take, e)
+                os_, oe = to_out(take, s, i), to_out(take, e, i)
                 if os_ is not None and oe is not None:
                     out.append((text, os_, oe))
     return out
