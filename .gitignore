@@ -3,3 +3,4 @@
 
 # Rendered deliverables (too large for git)
 /video-edit/final/*.mp4
+__pycache__/
