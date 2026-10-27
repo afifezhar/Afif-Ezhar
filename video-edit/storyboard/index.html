@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/sb.css" />
+  </head>
+  <body>
+    <!-- Storyboard style frames: option A 0-6s, B 6-12s, C 12-18s, one beat per second -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="18" data-width="1080" data-height="1920">
+      <div id="option-a" class="clip" data-composition-id="option-a" data-composition-src="compositions/option-a.html" data-start="0" data-duration="6" data-track-index="0"></div>
+      <div id="option-b" class="clip" data-composition-id="option-b" data-composition-src="compositions/option-b.html" data-start="6" data-duration="6" data-track-index="0"></div>
+      <div id="option-c" class="clip" data-composition-id="option-c" data-composition-src="compositions/option-c.html" data-start="12" data-duration="6" data-track-index="0"></div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

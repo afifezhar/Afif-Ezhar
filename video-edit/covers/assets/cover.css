@@ -33,7 +33,7 @@
       /* 1 — Soalan besar */
       #c1 .copy { top: 880px; }
       #c1 .l1 { font-size: 120px; margin-top: 28px; }
-      #c1 .l2 { font-size: 160px; white-space: nowrap; }
+      #c1 .l2 { font-size: 140px; white-space: nowrap; }
       #c1 .sub { margin-top: 30px; font-size: 40px; font-weight: 600; color: var(--muted); }
 
       /* 2 — Statistik */
@@ -56,7 +56,7 @@
       #c3 .sub { margin-top: 30px; font-size: 40px; font-weight: 600; color: var(--muted); }
 
       /* 4 — Tips */
-      #c4 .copy { top: 860px; }
+      #c4 .copy { top: 780px; }
       #c4 .l1 { font-size: 96px; white-space: nowrap; }
       #c4 .l1 s { text-decoration-thickness: 12px; text-decoration-color: var(--alert); }
       #c4 .l2 { font-size: 140px; }

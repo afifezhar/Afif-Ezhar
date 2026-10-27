@@ -1,0 +1,68 @@
+@font-face { font-family: "Anton"; src: url("fonts/Anton.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Inter"; src: url("fonts/Inter.woff2") format("woff2"); font-weight: 100 900; }
+@font-face { font-family: "JB Mono"; src: url("fonts/JetBrainsMono.woff2") format("woff2"); font-weight: 700; }
+
+:root {
+  --ink: #ffffff;
+  --accent: #ffd60a;
+  --alert: #ff3b30;
+  --paper: #f6f3ec;
+  --muted: rgba(255, 255, 255, 0.75);
+  --display: "Anton", sans-serif;
+  --text: "Inter", sans-serif;
+  --mono: "JB Mono", monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0b0b0c; }
+#root { position: relative; width: 1080px; height: 1920px; font-family: var(--text); color: var(--ink); }
+
+.scene { position: absolute; inset: 0; overflow: hidden; }
+.plate { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 22%; }
+.zoom-110 { transform: scale(1.1); }
+.zoom-118 { transform: scale(1.18); }
+.split-r { clip-path: inset(0 0 0 580px); }
+.seam { position: absolute; top: 0; bottom: 0; left: 577px; width: 6px; background: var(--accent); }
+.shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 38%, rgba(0,0,0,0.6) 55%, rgba(0,0,0,0.85) 75%, rgba(0,0,0,0.9) 100%); }
+.flash { position: absolute; inset: 0; background: rgba(255, 59, 48, 0.18); }
+.blurband { position: absolute; left: 0; right: 0; top: 0; height: 1920px; background: linear-gradient(180deg, rgba(255,255,255,0) 0, rgba(255,255,255,0.10) 40%, rgba(255,255,255,0) 60%); }
+
+/* Every overlay below is .ov and must stay in the safe zone (x 64-900, y 220-1330). */
+.ov { position: absolute; }
+.k { color: var(--accent); }
+.kr { color: var(--alert); }
+
+/* ---------- Option A: Editorial Clean ---------- */
+.capA { left: 64px; width: 836px; bottom: 610px; text-align: center; font-weight: 800; font-size: 54px; line-height: 1.18; text-shadow: 0 3px 14px rgba(0,0,0,0.7); }
+.cardA { left: 64px; width: 836px; background: var(--paper); color: #111; border-radius: 28px; padding: 34px 40px; box-shadow: 0 18px 50px rgba(0,0,0,0.35); }
+.cardA .eyebrow { font-family: var(--mono); font-size: 26px; color: #6b6b6b; letter-spacing: 0.04em; }
+.cardA .num { font-family: var(--display); font-size: 150px; line-height: 1; color: #111; }
+.cardA .num em { font-style: normal; color: #d4a600; }
+.cardA .body { font-size: 40px; font-weight: 700; line-height: 1.2; margin-top: 8px; }
+.cardA .src { font-family: var(--mono); font-size: 22px; color: #8a8a8a; margin-top: 14px; }
+.titleA { left: 64px; width: 836px; top: 240px; font-family: var(--display); font-size: 92px; line-height: 0.95; text-transform: uppercase; text-shadow: 0 4px 20px rgba(0,0,0,0.6); }
+.chipsA { left: 64px; top: 860px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.chipsA span { font-size: 40px; font-weight: 700; padding: 12px 26px; border-radius: 999px; background: rgba(255,255,255,0.14); border: 2px solid rgba(255,255,255,0.5); }
+.chipsA span.on { background: var(--accent); color: #111; border-color: var(--accent); }
+.trackerA { left: 64px; top: 240px; font-family: var(--mono); font-size: 28px; padding: 10px 20px; border-radius: 12px; background: rgba(0,0,0,0.55); }
+.trackerA b { color: var(--accent); }
+.quoteA { left: 64px; width: 836px; top: 790px; font-size: 52px; font-weight: 800; line-height: 1.15; }
+.quoteA .small { display: block; font-size: 40px; font-weight: 600; color: var(--muted); margin-bottom: 10px; }
+
+/* ---------- Option B: Fast TikTok Native ---------- */
+.capB { left: 64px; width: 836px; bottom: 640px; text-align: center; font-family: var(--display); font-size: 108px; line-height: 1.1; text-transform: uppercase;
+        -webkit-text-stroke: 4px #000; paint-order: stroke fill; text-shadow: 0 8px 0 rgba(0,0,0,0.6); }
+.hugeB { left: 64px; width: 836px; font-family: var(--display); text-transform: uppercase; line-height: 0.9; -webkit-text-stroke: 5px #000; paint-order: stroke fill; text-shadow: 0 10px 0 rgba(0,0,0,0.55); }
+.stampB { font-family: var(--display); text-transform: uppercase; background: var(--alert); color: #fff; padding: 4px 26px 0; transform: rotate(-6deg); box-shadow: 0 10px 0 rgba(0,0,0,0.5); }
+.stampB.y { background: var(--accent); color: #111; }
+.arrowB { font-family: var(--text); font-weight: 900; }
+
+/* ---------- Option C: Real vs AI ---------- */
+.capC { left: 64px; width: 836px; bottom: 610px; text-align: center; }
+.capC span { display: inline; font-family: var(--mono); font-size: 44px; line-height: 1.55; background: rgba(0,0,0,0.85); padding: 6px 14px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.capC span em { font-style: normal; background: var(--alert); color: #fff; padding: 0 6px; }
+.tagC { font-family: var(--display); font-size: 60px; padding: 6px 22px 2px; }
+.tagC.real { background: #fff; color: #000; }
+.tagC.ai { background: var(--alert); color: #fff; }
+.termC { left: 64px; width: 836px; top: 800px; font-family: var(--mono); font-size: 40px; line-height: 1.6; background: rgba(5,10,5,0.88); border: 2px solid rgba(120,255,140,0.45); border-radius: 14px; padding: 28px 34px; color: #b8ffbf; }
+.termC .dim { color: rgba(184,255,191,0.55); }
+.headC { left: 64px; width: 836px; font-family: var(--display); text-transform: uppercase; line-height: 0.92; text-shadow: 0 6px 24px rgba(0,0,0,0.6); }
