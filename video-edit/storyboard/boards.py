@@ -2,7 +2,7 @@
 
 Run from video-edit/storyboard after a snapshot:
   options A-C: snapshot --at 0.5,1.5,...,17.5  ->  python3 boards.py <snapdir> abc
-  style D:     snapshot --at 18.5,...,29.5     ->  python3 boards.py <snapdir> d
+  style D:     snapshot --at 18.5,...,31.5     ->  python3 boards.py <snapdir> d
 """
 import glob
 import subprocess
@@ -46,26 +46,30 @@ def boards_abc(snapdir):
                         "-map", "[out]", "-q:v", "3", f"out/option-{k}.jpg"], check=True)
 
 
-def board_d(snapdir):
-    """Style D: 12 frames (snapshot at 18.5..29.5) in two rows, labels from labels-d.txt."""
+def board_d(snapdir, name="style-d", title="STYLE D  -  KOLD CAPTIONS + EDITORIAL B-ROLL (WHITE / BLACK, YELLOW ACCENT)"):
+    """Style D: frames (snapshot at 18.5, 19.5, ...) in two rows, labels from labels-d.txt."""
     labels = [line.split("|") for line in open("labels-d.txt").read().splitlines()]
     frames = sorted(glob.glob(f"{snapdir}/frame-*.png"))
     ins, flt = [], []
     for j, (beat, note) in enumerate(labels):
         ins += ["-i", frames[j]]
-        colour = "0xE9B9C1" if "MG" in note else "0xFFFFFF"
+        colour = "0xFFD60A" if "MG" in note else "0xFFFFFF"
         flt.append(
             f"[{j}]scale=360:640,pad=380:740:10:60:color=0x111111,"
             f"drawtext=fontfile={FB}:text='{esc(beat)}':x=12:y=14:fontsize=22:fontcolor={colour}:expansion=none,"
-            f"drawtext=fontfile={FR}:text='{esc(note.replace('TH', 'Talking head + Kold caption').replace('MG', 'Motion-graphic b-roll'))}':x=12:y=706:fontsize=15:fontcolor=white:expansion=none[v{j}]"
+            f"drawtext=fontfile={FR}:text='{esc(note.replace('TH', 'Talking head + Kold caption').replace('MG dark', 'B-roll black').replace('MG light', 'B-roll white'))}':x=12:y=706:fontsize=15:fontcolor=white:expansion=none[v{j}]"
         )
-    flt.append("".join(f"[v{j}]" for j in range(6)) + "hstack=6[r1]")
-    flt.append("".join(f"[v{j}]" for j in range(6, 12)) + "hstack=6[r2]")
+    half = (len(labels) + 1) // 2
+    flt.append("".join(f"[v{j}]" for j in range(half)) + f"hstack={half}[r1]")
+    flt.append("".join(f"[v{j}]" for j in range(half, len(labels))) + f"hstack={len(labels) - half}[r2]")
     flt.append("[r1][r2]vstack,pad=iw:ih+70:0:70:color=0x111111,"
-               f"drawtext=fontfile={FB}:text='{esc('STYLE D  -  KOLD CAPTIONS + EDITORIAL MOTION-GRAPHIC B-ROLL')}':x=14:y=22:fontsize=32:fontcolor=white:expansion=none[out]")
+               f"drawtext=fontfile={FB}:text='{esc(title)}':x=14:y=22:fontsize=32:fontcolor=white:expansion=none[out]")
     subprocess.run(["ffmpeg", "-loglevel", "error", "-y", *ins, "-filter_complex", ";".join(flt),
-                    "-map", "[out]", "-q:v", "3", "out/style-d.jpg"], check=True)
+                    "-map", "[out]", "-q:v", "3", f"out/{name}.jpg"], check=True)
 
 
 if __name__ == "__main__":
-    (board_d if sys.argv[2] == "d" else boards_abc)(sys.argv[1])
+    if sys.argv[2] == "d":
+        board_d(sys.argv[1])
+    else:
+        boards_abc(sys.argv[1])

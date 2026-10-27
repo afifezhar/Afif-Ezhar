@@ -7,7 +7,7 @@ Base: **Take A** (`VID_20261027_081227.mp4`), 1080×1920. Timings below are Take
 - Captions ref: https://www.pinterest.com/pin/170362798400644982/ ("Kold-style subtitles")
 - B-roll ref: https://www.pinterest.com/pin/1119285313673132667/ (motion graphics as b-roll only)
 
-Board: `storyboard/out/style-d.jpg` (12 frames). Motion test, rendered in HyperFrames with the processed voice: `samples/style-d-motion-test.mp4` (11.5 s: hook H2 → opening line → star wipe → b-roll).
+Board: `storyboard/out/style-d.jpg` (14 frames). Motion test, rendered in HyperFrames with the processed voice: `samples/style-d-motion-test.mp4` (11.5 s: hook H2 → opening line → star wipe → b-roll).
 
 **Talking head + Kold captions**
 - One stacked phrase at a time at chest level, centred, bottom-anchored at y 1230. The face stays clear and it sits inside the safe zone.
@@ -15,35 +15,42 @@ Board: `storyboard/out/style-d.jpg` (12 frames). Motion test, rendered in HyperF
 - White text with a soft white glow and a light drop shadow. No box and no stroke.
 - Each word appears on its spoken word (Whisper word times): fade, rise of 22 px and scale from 0.94, over 0.16 s. The phrase clears when the next one starts.
 
-**Motion-graphic b-roll (full screen, cuts away from the talking head; the voice continues)**
-- White canvas with one accent colour, maroon `#9e2a3a`, plus blush `#e9b9c1` for secondary words. One dark variant uses black with a red glow.
+**B-roll (full screen, cuts away from the talking head; the voice continues)**
+- **Canvases alternate white and black** so the b-roll never reads as one long dark block.
+  - Black canvas: yellow headline `#ffd60a`, white eyebrow, a soft spotlight behind the object.
+  - White canvas: black headline on a yellow marker band.
+- One accent colour only, **yellow** (it replaced the reference's maroon).
 - An italic eyebrow line, typed letter by letter in sync with the voice. Below it, a huge **Poppins ExtraBold Italic** headline with tight leading. Each word slides in on its spoken word.
-- **CC0 stock** cut-outs in high-contrast black & white with soft drop shadows. Headline words sit behind or in front of the object for depth. Sources and licences: `storyboard/assets/stock/SOURCES.md`.
-  - Statue: "nampak perfect"
-  - Mannequin + mic: "AI model, AI voice"
-  - Hands with phone: "3 dari 4 skip"
-  - Paper bags: "membeli"
-  - Hand recording: "show"
-  - Robotic claw: "AI as a tool"
-- Transitions: a black four-point star grows from a corner to cover the frame, then settles back as a corner ornament (with an ElevenLabs whoosh). Barcode and swipe-arrow accents.
+- What the b-roll uses (no sexy or revealing imagery, and no cut-outs of Afif):
+  - **CC0 stock** cut-outs in black & white: statue, bags, hand recording, robotic claw. Sources and licences are in `storyboard/assets/stock/SOURCES.md`.
+  - **Pure motion graphics**:
+    - a TikTok feed with #affiliate / #productreview tags
+    - an "AI GENERATED" creator card with a voice waveform
+    - a 3×3 grid of identical faceless creator cards ("sama je")
+    - person icons for 3 of 4
+    - a dot grid for 9 of 10
+  - **AI-generated images** are allowed. None are used in this pass, because full-resolution export needs a saved Canva design and that was declined.
+- Transitions: a four-point star (yellow on black, black on white) grows from a corner to cover the frame, then settles back as a corner ornament, with an ElevenLabs whoosh. Barcode and swipe accents.
 - B-roll text follows the same safe zone. Images may bleed past it.
 
 | # | Beat | Take A | Type | On screen |
 | --- | --- | --- | --- | --- |
 | 1 | Hook (H2) | 71.2 | Talking head | "Video yang / *perfect*" → "bukan lagi / **kelebihan utama** / dah." |
 | 2 | Open | 1.7–6.1 | Talking head | "AI sekarang / **dah boleh**" → "buat video yang / *nampak real,*" → "nampak / perfect." |
-| 3 | B-roll | 6.1–9.3 | MG · statue | *Tapi persoalannya,* / **orang masih percaya ke?** |
-| 4 | B-roll | 16.3–22.2 | MG · mannequin + mic | *Ada yang guna* / **AI model, AI voice.** |
-| 5 | Talk | 24.0–29.7 | Talking head | "lama-lama semuanya nampak / *sama je.*" |
-| 6 | B-roll | 35.0–44.2 | MG · phone | *Menurut kajian TikTok 2026,* / **3 dari 4** … **skip.** |
-| 7 | B-roll | 44.2–52.1 | MG dark · bags | *dan 9 daripada 10 kata* / **authentic** / content pengaruh keputusan membeli |
-| 8 | Thesis | 54.9–60.0 | Talking head | "but / *authenticity* / is becoming more valuable." |
-| 9 | B-roll | 83.6–86.2 | MG · hand recording | *First,* / **show,** / don't just generate. |
-| 10 | Talk | 91.4–97.9 | Talking head | "second, / **share real** / *experiences.*" |
-| 11 | B-roll | 100.2–104.9 | MG · claw | *Third, use AI as a* / **tool,** / not your identity. |
-| 12 | CTA | 120.1–128.3 | Talking head | "korang masih / *percaya ke?*" |
+| 3 | B-roll | 6.1–9.3 | Black · stock statue | *Tapi persoalannya,* / **orang masih percaya ke?** |
+| 4 | B-roll | 9.7–16.3 | White · MG TikTok feed | *Cuba korang scroll TikTok sekarang,* / **affiliate, review, iklan.** |
+| 5 | B-roll | 16.3–22.2 | Black · MG AI card + waveform | *Ada yang guna* / **AI model, AI voice.** |
+| 6 | B-roll | 24.0–29.7 | White · MG 3×3 identical cards | *Lama-lama semuanya nampak* / **sama je.** |
+| 7 | B-roll | 35.0–44.2 | White · MG person icons | *Menurut kajian TikTok 2026,* / **3 dari 4** / skip content |
+| 8 | B-roll | 44.2–52.1 | Black · MG dots + stock bags | *dan 9 daripada 10 kata* / **authentic** / content pengaruh keputusan membeli |
+| 9 | Thesis | 54.9–60.0 | Talking head | "but / *authenticity* / is becoming more valuable." |
+| 10 | Talk | 60.0–63.2 | Talking head | "tapi aku bukan nak cakap / *jangan guna AI.*" |
+| 11 | B-roll | 83.6–86.2 | White · stock hand recording | *First,* / **show,** / don't just generate. |
+| 12 | Talk | 91.4–97.9 | Talking head | "second, / **share real** / *experiences.*" |
+| 13 | B-roll | 100.2–104.9 | Black · stock claw | *Third, use AI as a* / **tool,** / not your identity. |
+| 14 | CTA | 120.1–128.3 | Talking head | "korang masih / *percaya ke?*" |
 
-The b-roll covers about 34 s, roughly 27% of the runtime. Every other moment stays on the talking head with Kold captions.
+The b-roll covers about 46 s, roughly 37% of the runtime. Every other moment stays on the talking head with Kold captions.
 
 ---
 
@@ -116,7 +123,7 @@ Spec: `safe-zone.json`. Footage runs full-bleed. **Every caption, motion graphic
 | Cover grid crop (3:4) | y 240–1680 | Cover headline must also fit here for the profile grid |
 
 - B-roll and motion-graphic inserts are cards inside the content box (max 836 px wide). A full-screen b-roll cut is fine, but any text on it follows the same box.
-- `scripts/check-safe-zone.mjs covers/compositions storyboard/compositions` measures every overlay element and fails on any overflow. It caught several real overflows while these were built (a headline running into the action rail, captions wrapping into the bottom UI), and all 4 covers and 18 style frames now pass. The edit composition will go through the same check. `covers/out/safe-zone-preview.jpg` shows the zones (red = reserved, green = content box, cyan = 3:4 grid crop).
+- `scripts/check-safe-zone.mjs covers/compositions storyboard/compositions` measures every overlay element and fails on any overflow. It caught several real overflows while these were built (a headline running into the action rail, captions wrapping into the bottom UI), and all 4 covers, the 18 option frames, the 14 Style D frames and the motion test now pass. The edit composition will go through the same check. `covers/out/safe-zone-preview.jpg` shows the zones (red = reserved, green = content box, cyan = 3:4 grid crop).
 
 ---
 
