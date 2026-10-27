@@ -10,7 +10,9 @@ STAR = ('<svg class="star" viewBox="0 0 100 100" style="{pos}"><path '
         'd="M50 0 C54 38 62 46 100 50 C62 54 54 62 50 100 C46 62 38 54 0 50 C38 46 46 38 50 0Z"/></svg>')
 
 LOCAL = """
-.c-fade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.85) 100%); }
+.c-fade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.85) 100%); }
+.c-spark { position: absolute; width: 78px; height: 78px; }
+.c-spark path { fill: var(--accent); }
 .cover-kold { bottom: 620px; }
 .cover-kold .ks { font-size: 78px; }
 .cover-kold .kserif { font-size: 186px; line-height: 0.82; }
@@ -26,7 +28,8 @@ COVERS = {
     "d1": ("Talking head + Kold caption",
            f'<img class="plate" src="{FRAME}" alt="" /><div class="c-fade"></div>'
            '<div class="ov kold cover-kold"><div class="ks">korang</div><div class="kserif i">percaya ke</div>'
-           '<div class="kit">AI-generated</div><div class="ks">product review?</div></div>'),
+           '<div class="kit">AI-generated</div><div class="ks">product review?</div></div>'
+           + STAR.replace('class="star"', 'class="c-spark"').format(pos="left:902px;top:968px")),
     "d2": ("Face on top, black b-roll panel",
            '<img class="plate half" src="../assets/frames/A_8_2_top.jpg" alt="" /><div class="panel"></div>'
            + STAR.format(pos="right:-170px;top:1000px;width:420px;height:420px")
