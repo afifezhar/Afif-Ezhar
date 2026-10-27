@@ -96,7 +96,7 @@ def broll():
     people = "".join(PERSON.format(t=round(a + 0.3 + i * 0.1, 3), on=f' data-on="{O("A", 36.88) + i * 0.15:.3f}"' if i < 3 else "")
                      for i in range(4))
     out.append(("b5", a, b, True,
-                star("left:-200px;bottom:-200px") + typed("Menurut kajian TikTok tahun ni,", O("A", 32.76), O("A", 35.28), 250)
+                star("left:-200px;bottom:-200px") + typed("Menurut kajian TikTok 2026,", O("A", 32.76), O("A", 35.28), 250)
                 + f'<div class="ov mgbig" style="top:300px;font-size:210px">{w("3", O("A", 35.76))} {w("dari", O("A", 36.2))} {w("4", O("A", 36.48))}</div>'
                 + f'<div class="people" style="left:90px;top:620px;width:780px">{people}</div>'
                 + f'<div class="ov mgmid" style="top:1080px">{w("skip", O("A", 40.32))} {w("content", O("A", 40.7))}</div>'

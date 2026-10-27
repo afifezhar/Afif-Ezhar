@@ -5,7 +5,7 @@ Base: **Take A** (`VID_20261027_081227.mp4`), 1080×1920. Timings below are Take
 ## Final edit
 
 - **v4:** "So, kalau korang buat content untuk business atau affiliate, aku nak share tiga benda ataupun tiga tips untuk korang" is back in.
-  - "Menurut kajian TikTok **tahun ni**" now uses Take A's own recording with "sendiri pada" dropped, instead of the Take B "2026" splice.
+  - The voice now says "Menurut kajian TikTok **tahun ni**": Take A's own recording with "sendiri pada" dropped, instead of the Take B "2026" splice. The b-roll eyebrow still reads "Menurut kajian TikTok 2026," (his call).
   - Voice cloning was not needed, and is not available on the free ElevenLabs plan.
   - Length 1:36.
 
