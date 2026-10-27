@@ -291,7 +291,7 @@ html = f"""<!doctype html>
 {stars}
 
       <audio id="a-voice" src="assets/media/voice.m4a" data-start="0" data-duration="{SPEECH_END}" data-track-index="2"></audio>
-      <audio id="a-music" src="assets/media/music.m4a" data-start="0" data-duration="{DURATION}" data-volume="0.24" data-track-index="3"></audio>
+      <audio id="a-music" src="assets/media/music.m4a" data-start="0" data-duration="{DURATION}" data-volume="0.55" data-track-index="3"></audio>
 {whooshes}
 {typing}
     </div>

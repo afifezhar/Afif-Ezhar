@@ -52,8 +52,8 @@ chain, last = [], "[0]"
 for i in range(1, copies):
     chain.append(f"{last}[{i}]acrossfade=d=1.5:c1=tri:c2=tri[m{i}]")
     last = f"[m{i}]"
-# Lifted 2.2x over 0.6 s when the talk ends, so the end card plays on the music, then faded out.
-lift = f"volume='1+1.2*min(max((t-{SPEECH_END - 0.3:.2f})/0.6,0),1)':eval=frame"
+# Lifted 3.4x over 0.6 s when the talk ends, so the end card plays on the music, then faded out.
+lift = f"volume='1+2.4*min(max((t-{SPEECH_END - 0.3:.2f})/0.6,0),1)':eval=frame"
 chain.append(f"{last}atrim=0:{DURATION + 0.5:.2f},{lift},afade=t=in:d=0.5,afade=t=out:st={DURATION - 1.6:.2f}:d=1.6[m]")
 run([x for _ in range(copies) for x in ("-i", loop)] + ["-filter_complex", ";".join(chain), "-map", "[m]",
     "-c:a", "aac", "-b:a", "192k", f"{OUT}/music.m4a"])
