@@ -38,4 +38,6 @@ Whisper slips to fix in captions: "AI genetik" → "AI generated", "efresif" →
 - HyperFrames `0.8.206` (`npx hyperframes`). Run `npx hyperframes browser ensure` once.
   Vendor GSAP locally if `cdn.jsdelivr.net` is not reachable.
 - ElevenLabs (SFX, music, Scribe) reads `ELEVENLABS_API_KEY` from the environment.
-- Output: 1080×1920. All text inside y 168–1330 px, and kept clear of the right-hand action rail.
+- Output: 1080×1920. All overlays inside the content box in `safe-zone.json` (x 64–900, y 220–1330), clear of TikTok/Reels/Shorts UI.
+- Footage: `scripts/retouch.sh` (light retouch), then the `grade.json` grade in HyperFrames.
+- Source MP4s are not in git; pull them from the Drive folder above.
