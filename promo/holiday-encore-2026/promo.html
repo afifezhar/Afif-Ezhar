@@ -1,0 +1,271 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  :root {
+    --grad: linear-gradient(100deg, #FFE08A 0%, #FF9A3D 45%, #FF3D71 100%);
+    --ease: cubic-bezier(.16,1,.3,1);
+    --snap: cubic-bezier(.85,0,.15,1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+  body { font-family: 'Inter Display', 'Inter', sans-serif; color: #f5f5f7; -webkit-font-smoothing: antialiased; }
+
+  .scene { position: absolute; inset: 0; overflow: hidden; visibility: hidden; }
+  .full { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .h { font-weight: 700; letter-spacing: -0.045em; line-height: .95; }
+  .eyebrow { font-weight: 600; font-size: 30px; letter-spacing: .32em; text-transform: uppercase; color: #a1a1a6; }
+  .center { position: absolute; left: 0; right: 0; text-align: center; }
+
+  /* animation helpers — every delay is absolute seconds on the master timeline */
+  .a { animation-fill-mode: both; animation-delay: var(--t); animation-duration: var(--du, .7s); animation-timing-function: var(--ease); }
+  .blurIn  { animation-name: blurIn; }
+  .riseIn  { animation-name: riseIn; }
+  .fadeIn  { animation-name: fadeIn; }
+  .zoomOut { animation-name: zoomOut; animation-timing-function: cubic-bezier(.7,0,.84,0); }
+  .fadeOut { animation-name: fadeOut; animation-timing-function: linear; }
+  @keyframes blurIn  { from { opacity: 0; filter: blur(28px); transform: scale(1.12); } to { opacity: 1; filter: blur(0); transform: none; } }
+  @keyframes riseIn  { from { opacity: 0; filter: blur(12px); transform: translateY(70px); } to { opacity: 1; filter: blur(0); transform: none; } }
+  @keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+  @keyframes zoomOut { from { opacity: 1; filter: blur(0); transform: scale(1); } to { opacity: 0; filter: blur(30px); transform: scale(1.6); } }
+
+  /* ---------- S0 intro ---------- */
+  #s0 .lines { top: 760px; font-size: 128px; }
+  #s0 .lines span { display: inline-block; }
+
+  /* ---------- S1 card expand ---------- */
+  #s1 .clip { position: absolute; inset: 0; animation: expand 1.1s var(--snap) both; animation-delay: 1.45s; }
+  @keyframes expand { from { clip-path: inset(620px 250px 620px 250px round 64px); } to { clip-path: inset(0 0 0 0 round 0); } }
+  #s1 .clip img { animation: kb1 2s var(--ease) both; animation-delay: 1.45s; object-position: 50% 50%; }
+  @keyframes kb1 { from { transform: scale(1.5); } to { transform: scale(1.08); } }
+  #s1 .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35), transparent 30%, transparent 45%, rgba(0,0,0,.85)); }
+  #s1 .ttl { bottom: 260px; }
+  #s1 .ttl .h { font-size: 168px; }
+  #s1 .chip { display: inline-block; margin-top: 40px; padding: 18px 44px; border-radius: 100px; font-size: 38px; font-weight: 600;
+    background: rgba(255,255,255,.16); backdrop-filter: blur(24px); border: 1.5px solid rgba(255,255,255,.35); }
+
+  /* ---------- word scenes ---------- */
+  .word { position: absolute; left: 0; right: 0; text-align: center; font-size: 250px; }
+  .word.sm { font-size: 190px; }
+  .sub { position: absolute; left: 0; right: 0; text-align: center; font-size: 44px; font-weight: 500; color: #d2d2d7; }
+
+  /* Stay: card slides up */
+  #s2 .card { position: absolute; left: 80px; right: 80px; top: 150px; height: 1040px; border-radius: 56px; overflow: hidden;
+    animation: cardUp .8s var(--ease) both; animation-delay: 3.3s; }
+  @keyframes cardUp { from { transform: translateY(900px) scale(.9); } to { transform: none; } }
+  #s2 .card img { animation: kb2 1s linear both; animation-delay: 3.3s; }
+  @keyframes kb2 { from { transform: scale(1.25); } to { transform: scale(1.1); } }
+
+  /* Play: iris */
+  #s3 .iris { position: absolute; inset: 0; animation: iris .6s var(--snap) both; animation-delay: 4.1s; }
+  @keyframes iris { from { clip-path: circle(0% at 50% 45%); } to { clip-path: circle(120% at 50% 45%); } }
+  #s3 img { animation: kb3 1s linear both; animation-delay: 4.1s; object-position: 42% 50%; }
+  @keyframes kb3 { from { transform: scale(1.35) rotate(-3deg); } to { transform: scale(1.12) rotate(0); } }
+  .bshade { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,.8)); }
+
+  /* Celebrate: split panels */
+  #s4 .panel { position: absolute; top: 0; width: 360px; height: 1920px; overflow: hidden; animation-duration: .6s; animation-timing-function: var(--snap); animation-fill-mode: both; }
+  #s4 .panel img { position: absolute; top: 0; width: 1080px; height: 1920px; object-fit: cover; object-position: 45% 50%; }
+  @keyframes pDown { from { transform: translateY(-1920px); } to { transform: none; } }
+  @keyframes pUp   { from { transform: translateY(1920px); } to { transform: none; } }
+
+  /* Repeat: grid zoom-out */
+  #s5 .grid { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; display: grid;
+    grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 14px; padding: 14px;
+    transform-origin: 50% 50%; animation: gridZoom .75s var(--snap) both; animation-delay: 5.75s; }
+  @keyframes gridZoom { from { transform: scale(3.12); } to { transform: scale(1); } }
+  #s5 .tile { border-radius: 28px; overflow: hidden; position: relative; }
+  #s5 .tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 38% 50%; }
+  #s5 .dim { position: absolute; inset: 0; background: rgba(0,0,0,.45); }
+
+  /* ---------- S6 bento ---------- */
+  #s6 .head { top: 150px; font-size: 92px; }
+  .bento { position: absolute; left: 60px; right: 60px; top: 330px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .tileb { position: relative; border-radius: 44px; overflow: hidden; background: #1c1c1e; padding: 40px; display: flex; flex-direction: column; justify-content: flex-end; }
+  .tileb.img { color: #fff; }
+  .tileb.img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .tileb.img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 35%, rgba(0,0,0,.75)); }
+  .tileb > div { position: relative; z-index: 1; }
+  .tileb .k { font-size: 84px; font-weight: 700; letter-spacing: -.04em; line-height: 1; }
+  .tileb .l { font-size: 34px; font-weight: 500; color: #d2d2d7; margin-top: 10px; line-height: 1.2; }
+  .span2 { grid-column: span 2; }
+  .pop { animation-name: pop; animation-duration: .7s; }
+  @keyframes pop { from { opacity: 0; transform: translateY(90px) scale(.9); filter: blur(14px); } to { opacity: 1; transform: none; filter: blur(0); } }
+
+  /* ---------- S7 counter ---------- */
+  #s7 .glow { position: absolute; left: 50%; top: 50%; width: 1500px; height: 1500px; margin: -750px 0 0 -750px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,120,60,.45), rgba(255,61,113,.18) 40%, transparent 68%);
+    animation: breathe 2s ease-in-out both; animation-delay: 8.5s; }
+  @keyframes breathe { 0% { transform: scale(.4); opacity: 0; } 50% { opacity: 1; } 100% { transform: scale(1.1); opacity: .8; } }
+  #s7 .num { top: 640px; font-size: 470px; font-weight: 800; letter-spacing: -.06em; line-height: 1; }
+
+  /* ---------- S8 dates ---------- */
+  #s8 .track { position: absolute; left: 90px; right: 90px; top: 1080px; height: 6px; background: #2c2c2e; border-radius: 6px; }
+  #s8 .fill { position: absolute; inset: 0; background: var(--grad); border-radius: 6px; transform-origin: left;
+    animation: grow 1.1s var(--ease) both; animation-delay: 10.7s; }
+  @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  #s8 .dot { position: absolute; top: -14px; width: 34px; height: 34px; border-radius: 50%; background: #fff; box-shadow: 0 0 30px rgba(255,154,61,.9); }
+
+  /* ---------- S9 end ---------- */
+  #s9 .bg { animation: kb9 2.6s linear both; animation-delay: 12.4s; object-position: 58% 50%; }
+  @keyframes kb9 { from { transform: scale(1.25); filter: blur(30px) brightness(.4); } 25% { filter: blur(0) brightness(.55); } to { transform: scale(1.05); filter: blur(0) brightness(.55); } }
+  #s9 .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,.75) 55%, #000); }
+  #s9 .logo { position: absolute; top: 200px; left: 50%; width: 300px; margin-left: -150px; }
+  .btn { display: inline-flex; align-items: center; gap: 18px; padding: 34px 84px; border-radius: 100px; background: #fff; color: #000;
+    font-size: 52px; font-weight: 700; letter-spacing: -.02em; }
+
+  /* ---------- global fx ---------- */
+  .flash { position: absolute; inset: 0; pointer-events: none; z-index: 50;
+    background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.95), rgba(255,220,180,.4) 40%, transparent 75%);
+    animation: flash .45s ease-out both; opacity: 0; }
+  @keyframes flash { 0% { opacity: 0; } 25% { opacity: 1; } 100% { opacity: 0; } }
+  .leak { position: absolute; inset: -200px; pointer-events: none; z-index: 49; mix-blend-mode: screen;
+    background: radial-gradient(ellipse at 20% 30%, rgba(255,140,60,.55), transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(255,60,120,.45), transparent 50%);
+    animation: leak .9s ease-in-out both; opacity: 0; }
+  @keyframes leak { 0% { opacity: 0; transform: translateX(-160px); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateX(160px); } }
+  .vignette { position: absolute; inset: 0; z-index: 48; pointer-events: none; box-shadow: inset 0 0 260px rgba(0,0,0,.55); }
+</style>
+</head>
+<body>
+
+<!-- S0: intro type -->
+<section class="scene" id="s0" data-s="0" data-e="1.75">
+  <div class="a zoomOut" style="--t:1.35s; --du:.4s; position:absolute; inset:0">
+    <div class="center lines h">
+      <span class="a blurIn" style="--t:.1s">This</span>
+      <span class="a blurIn" style="--t:.35s">holiday,</span><br>
+      <span class="a blurIn" style="--t:.7s">play&nbsp;it</span>
+      <span class="a blurIn grad" style="--t:.95s">again.</span>
+    </div>
+  </div>
+</section>
+
+<!-- S1: hero card expands -->
+<section class="scene" id="s1" data-s="1.45" data-e="3.5">
+  <div class="clip"><img class="full" src="assets/pool.jpg"></div>
+  <div class="shade a fadeIn" style="--t:1.9s"></div>
+  <div class="center ttl">
+    <div class="eyebrow a riseIn" style="--t:2.0s; color:#fff">Hard Rock Hotel Desaru Coast</div>
+    <div class="h a blurIn" style="--t:2.15s; margin-top:26px">Holiday</div>
+    <div class="h grad a blurIn" style="--t:2.3s; padding-bottom:10px">Encore.</div>
+    <div class="chip a riseIn" style="--t:2.55s">Season 3</div>
+  </div>
+</section>
+
+<!-- S2: Stay -->
+<section class="scene" id="s2" data-s="3.3" data-e="4.25">
+  <div class="card"><img class="full" src="assets/arrive.jpg" style="object-position:50% 50%"></div>
+  <div class="word h a blurIn" style="--t:3.45s; top:1260px">Stay.</div>
+  <div class="sub a riseIn" style="--t:3.6s; top:1540px">Daily buffet breakfast at Sessions</div>
+</section>
+
+<!-- S3: Play -->
+<section class="scene" id="s3" data-s="4.1" data-e="5.6">
+  <div class="iris"><img class="full" src="assets/waterpark.jpg"><div class="bshade"></div></div>
+  <div class="a zoomOut" style="--t:4.8s; --du:.2s; position:absolute; inset:0">
+    <div class="word h a blurIn" style="--t:4.3s; top:1260px">Play.</div>
+    <div class="sub a riseIn" style="--t:4.45s; top:1540px">1-year Adventure Waterpark pass</div>
+  </div>
+</section>
+
+<!-- S4: Celebrate -->
+<section class="scene" id="s4" data-s="4.9" data-e="5.85">
+  <div class="panel" style="left:0;     animation-name:pDown; animation-delay:4.9s"><img src="assets/rock.jpg" style="left:0"></div>
+  <div class="panel" style="left:360px; animation-name:pUp;   animation-delay:4.97s"><img src="assets/rock.jpg" style="left:-360px"></div>
+  <div class="panel" style="left:720px; animation-name:pDown; animation-delay:5.04s"><img src="assets/rock.jpg" style="left:-720px"></div>
+  <div class="bshade"></div>
+  <div class="word sm h a blurIn" style="--t:5.15s; top:1300px">Celebrate.</div>
+  <div class="sub a riseIn" style="--t:5.3s; top:1540px">Limited-edition Holiday Pack</div>
+</section>
+
+<!-- S5: Repeat -->
+<section class="scene" id="s5" data-s="5.7" data-e="6.7">
+  <div class="grid">
+    <div class="tile"><img src="assets/kids.jpg"></div><div class="tile"><img src="assets/kids.jpg"></div><div class="tile"><img src="assets/kids.jpg"></div>
+    <div class="tile"><img src="assets/kids.jpg"></div><div class="tile"><img src="assets/kids.jpg"></div><div class="tile"><img src="assets/kids.jpg"></div>
+    <div class="tile"><img src="assets/kids.jpg"></div><div class="tile"><img src="assets/kids.jpg"></div><div class="tile"><img src="assets/kids.jpg"></div>
+  </div>
+  <div class="dim a fadeIn" style="--t:6.1s; --du:.3s"></div>
+  <div class="word h grad a blurIn" style="--t:6.1s; top:780px; padding-bottom:20px">Repeat.</div>
+  <div class="sub a riseIn" style="--t:6.2s; top:1060px; color:#fff">Unlimited Roxity Kids Club</div>
+</section>
+
+<!-- S6: bento perks -->
+<section class="scene" id="s6" data-s="6.6" data-e="8.65">
+  <div class="a zoomOut" style="--t:8.35s; --du:.3s; position:absolute; inset:0">
+    <div class="center head h a riseIn" style="--t:6.65s">Every stay.<br><span class="grad">Every perk.</span></div>
+    <div class="bento">
+      <div class="tileb img span2 a pop" style="--t:6.8s; height:470px"><img src="assets/waterpark.jpg"><div><div class="k">1-year pass</div><div class="l">Adventure Waterpark Desaru Coast</div></div></div>
+      <div class="tileb a pop" style="--t:6.9s; height:330px"><div><div class="k grad" id="credit">MYR 100</div><div class="l">F&amp;B credit per room, every night</div></div></div>
+      <div class="tileb img a pop" style="--t:7.0s; height:330px"><img src="assets/dine.jpg" style="object-position:70% 50%"><div><div class="k" style="font-size:64px">Breakfast</div><div class="l">Daily buffet at Sessions</div></div></div>
+      <div class="tileb img a pop" style="--t:7.1s; height:330px"><img src="assets/kids.jpg" style="object-position:38% 50%"><div><div class="k" style="font-size:64px">Kids Club</div><div class="l">Unlimited Roxity access</div></div></div>
+      <div class="tileb a pop" style="--t:7.2s; height:330px"><div><div class="k" style="font-size:64px">Fruit Farm</div><div class="l">Tour for 3+ night stays</div></div></div>
+      <div class="tileb a pop" style="--t:7.3s; height:220px; padding:34px 40px"><div><div class="k grad">20% off</div><div class="l">Rock Shop</div></div></div>
+      <div class="tileb a pop" style="--t:7.4s; height:220px; padding:34px 40px"><div><div class="k grad">15% off</div><div class="l">Rock Spa</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- S7: counter -->
+<section class="scene" id="s7" data-s="8.5" data-e="10.55">
+  <div class="a fadeOut" style="--t:10.3s; --du:.25s; position:absolute; inset:0">
+    <div class="glow"></div>
+    <div class="center eyebrow a riseIn" style="--t:8.6s; top:470px">UNITY by Hard Rock members</div>
+    <div class="center h a fadeIn" style="--t:8.7s; top:560px; font-size:72px; color:#a1a1a6">Save up to</div>
+    <div class="center num grad a blurIn" style="--t:8.7s; --du:.9s"><span id="count">0</span>%</div>
+    <div class="center h a riseIn" style="--t:9.4s; top:1190px; font-size:96px">more.</div>
+  </div>
+</section>
+
+<!-- S8: dates -->
+<section class="scene" id="s8" data-s="10.4" data-e="12.55">
+  <div class="a zoomOut" style="--t:12.25s; --du:.3s; position:absolute; inset:0">
+    <div class="center eyebrow a riseIn" style="--t:10.45s; top:620px">Stay period</div>
+    <div class="center h a blurIn" style="--t:10.55s; top:700px; font-size:120px">6 Nov <span style="color:#6e6e73">→</span> 10 Jan</div>
+    <div class="center a fadeIn" style="--t:10.7s; top:850px; font-size:40px; color:#a1a1a6; font-weight:500">2026 – 2027 · minimum 2 nights</div>
+    <div class="track a fadeIn" style="--t:10.6s; --du:.3s">
+      <div class="fill"></div>
+      <div class="dot a blurIn" style="--t:10.7s; left:-17px"></div>
+      <div class="dot a blurIn" style="--t:11.6s; right:-17px"></div>
+    </div>
+    <div class="center eyebrow a riseIn" style="--t:11.3s; top:1260px">Book by</div>
+    <div class="center h grad a blurIn" style="--t:11.4s; top:1330px; font-size:140px; padding-bottom:12px">31 Dec 2026</div>
+  </div>
+</section>
+
+<!-- S9: end card -->
+<section class="scene" id="s9" data-s="12.4" data-e="15.1">
+  <img class="full bg" src="assets/guitar.jpg">
+  <div class="shade"></div>
+  <img class="logo a blurIn" src="assets/logo.png" style="--t:12.6s">
+  <div class="center h a blurIn" style="--t:12.75s; top:760px; font-size:150px">Holiday</div>
+  <div class="center h grad a blurIn" style="--t:12.9s; top:900px; font-size:150px; padding-bottom:14px">Encore.</div>
+  <div class="center a riseIn" style="--t:13.15s; top:1110px; font-size:44px; font-weight:500; color:#d2d2d7">Stay. Play. Celebrate. Repeat.</div>
+  <div class="center a riseIn" style="--t:13.4s; top:1300px"><span class="btn">Book now <span style="font-size:44px">→</span></span></div>
+  <div class="center eyebrow a fadeIn" style="--t:13.7s; top:1560px; font-size:26px">hotel.hardrock.com/desaru-coast</div>
+</section>
+
+<!-- global fx -->
+<div class="vignette"></div>
+<div class="flash" style="animation-delay:1.42s"></div>
+<div class="flash" style="animation-delay:6.55s"></div>
+<div class="flash" style="animation-delay:12.35s"></div>
+<div class="leak" style="animation-delay:3.1s"></div>
+<div class="leak" style="animation-delay:8.3s"></div>
+<div class="leak" style="animation-delay:13.0s; animation-duration:1.6s"></div>
+
+<script>
+  const ease = x => 1 - Math.pow(1 - Math.min(Math.max(x, 0), 1), 3);
+  window.render = t => {
+    document.querySelectorAll('.scene').forEach(s => {
+      s.style.visibility = (t >= +s.dataset.s && t < +s.dataset.e) ? 'visible' : 'hidden';
+    });
+    document.getAnimations().forEach(a => { a.pause(); a.currentTime = t * 1000; });
+    document.getElementById('count').textContent = Math.round(10 * ease((t - 8.7) / 0.8));
+  };
+</script>
+</body>
+</html>
