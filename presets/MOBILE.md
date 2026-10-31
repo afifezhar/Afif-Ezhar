@@ -75,3 +75,26 @@ Red primary: Hue +5, Sat +8 · Green primary: Sat −8 · Blue primary: Hue −8
 - **Masking → People → Face Skin**: Texture −25, Clarity −10
 - Backlit windows: **Linear gradient** or **Select Sky** mask, Highlights −30
 - Black & white frames: Profile **B&W**, Contrast +20, Whites +20, Blacks −20
+
+---
+
+# Bright Clean Wedding B&W
+
+Files: `BrightClean_Wedding_BW.xmp` (desktop) · `BrightClean_Wedding_BW_Mobile.dng` (mobile)
+
+Install it the same way as the colour version (Option A above). Name it `Bright Clean Wedding B&W` and uncheck White Balance.
+
+### Manual settings
+| Panel | Settings |
+|---|---|
+| Profile | **B&W** (Adobe Monochrome) |
+| Light | Exposure **+0.60** · Contrast +20 · Highlights −50 · Shadows +25 · Whites +20 · Blacks −20 |
+| Curve (white) | 0→0 · 60→52 · 128→134 · 192→208 · 255→252 |
+| B&W Mix | Red +10 · Orange **+20** · Yellow +10 · Green −10 · Aqua −10 · Blue −15 · Purple 0 · Magenta +5 |
+| Effects | Texture −5 · Clarity 0 · Dehaze +3 · Vignette 0 · Grain 0 |
+| Detail / Optics | Same as the colour version |
+
+**Tuning tips**
+- **Orange** controls skin brightness. Raise it for brighter, smoother faces and lower it for more character.
+- **Blue −15** makes navy outfits and window light read deeper, which separates them from the white dress.
+- For a moodier frame like the veil shot in the reference set, use Contrast +30 and Blacks −30.
