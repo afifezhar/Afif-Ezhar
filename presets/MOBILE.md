@@ -71,6 +71,9 @@ Enable Lens Corrections ✓ · Remove Chromatic Aberration ✓
 Red primary: Hue +5, Sat +8 · Green primary: Sat −8 · Blue primary: Hue −8, Sat +15
 
 ## Per-photo finishing on mobile
+
+For skin smoothing and eye/teeth retouch saved into the preset, see `RETOUCH.md`.
+
 - **Masking → Select Subject**: Exposure +0.15
 - **Masking → People → Face Skin**: Texture −25, Clarity −10
 - Backlit windows: **Linear gradient** or **Select Sky** mask, Highlights −30
